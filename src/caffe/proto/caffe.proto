@@ -365,6 +365,7 @@ message LayerParameter {
   optional ArgMaxParameter argmax_param = 103;
   optional BatchNormParameter batch_norm_param = 139;
   optional BiasParameter bias_param = 141;
+  optional CheckLabelParameter check_label_param = 1000;
   optional ConcatParameter concat_param = 104;
   optional ContrastiveLossParameter contrastive_loss_param = 105;
   optional ConvolutionParameter convolution_param = 106;
@@ -489,6 +490,14 @@ message ArgMaxParameter {
   // By default ArgMaxLayer maximizes over the flattened trailing dimensions
   // for each index of the first / num dimension.
   optional int32 axis = 3;
+}
+
+message CheckLabelParameter {
+  optional int32 ignore_label = 1;
+  // output label if the input label is ignored
+  optional int32 ignore_correct_label = 2 [default = 1];
+  optional int32 top_k = 3 [default = 1];
+  optional int32 axis = 4 [default = 1];
 }
 
 message ConcatParameter {
